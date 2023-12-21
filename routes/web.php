@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DoctorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,10 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// Landing Page
 Route::get('/',[HomeController::class,'index']);
 
+// Admin Page
 Route::get('/home',[HomeController::class,'redirect']);
 
 Route::middleware([
@@ -28,3 +30,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+// Doctor
+Route::resource('doctors', DoctorController::class);

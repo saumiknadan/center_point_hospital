@@ -16,8 +16,8 @@
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
-                      <a class="nav-link btn btn-success create-new-button" href="#">+ Create New Project</a>
-                    <h1>Show</h1>
+                      <a class="nav-link btn btn-success create-new-button" href="{{ url('/doctors/create') }}">+ Create New Project</a><br>
+                      <h1>Show</h1>
                     </div>
                 </div>
             </div>

@@ -30,24 +30,35 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'doctor' => 'required|integer',
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'speciality' => 'required|string|max:255',
+            'gender' => 'required|in:Male,Female', // Adjust the possible values as needed
+            'room_num' => 'required|string|max:50',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust allowed file types and size as needed
+        ]);
+    
         $doctor = new Doctor;
-        $doctor->id = $request->doctor;
-        $doctor->name = $request->name;
-        $doctor->phone = $request->phone;
-        $doctor->speciality = $request->speciality;
-        $doctor->gender = $request->gender;
-        $doctor->room_num = $request->room_num;
-        
+        $doctor->id = $validatedData['doctor'];
+        $doctor->name = $validatedData['name'];
+        $doctor->phone = $validatedData['phone'];
+        $doctor->speciality = $validatedData['speciality'];
+        $doctor->gender = $validatedData['gender'];
+        $doctor->room_num = $validatedData['room_num'];
+    
         if ($request->hasFile('image')) {
             $doctor->image = $request->file('image')->store('doctor');
         } else {
             return redirect()->back()->with('error', 'Please upload an image')->withInput();
         }
-
+    
         $doctor->save();
+        
         return redirect('/doctors')->with('message', 'Doctor added successfully');
-
     }
+    
 
     public function change_status(Doctor $doctor)
     {

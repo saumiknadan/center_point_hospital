@@ -11,12 +11,11 @@
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_navbar.html -->
             @include('admin.navbar')
-phone speciality room_number image
+
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
-                      <!-- Doctors Form -->
                       <div class="col-12 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body">
@@ -36,7 +35,7 @@ phone speciality room_number image
                                 </div>
   
                                 <div class="form-group">
-                                  <label for="room">Phone Number</label>
+                                  <label for="room">Room Number</label>
                                   <input type="number" class="form-control" id="room" name="room_num" placeholder="room">
                                 </div>
   
@@ -68,7 +67,6 @@ phone speciality room_number image
                           </div>
                         </div>
                       </div>
-                      
                     </div>
                 </div>
             </div>

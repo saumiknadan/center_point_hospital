@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->string('room_num')->nullable();
             $table->string('image')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

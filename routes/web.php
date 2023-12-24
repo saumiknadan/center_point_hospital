@@ -33,3 +33,5 @@ Route::middleware([
 
 // Doctor
 Route::resource('doctors', DoctorController::class);
+Route::get('doctor-status{doctor}', [DoctorController::class, 'change_status']);
+

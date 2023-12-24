@@ -31,9 +31,9 @@
                                     <th style="width=10%">Speciality</th>
                                     <th style="width=10%">Room No</th>
                                     <th style="width=20%">Phone</th>
-                                    <th style="width=15%">Gender</th>
+                                    <th style="width=10%">Gender</th>
                                     <th style="width=10%">Status</th>
-                                    <th style="width=20%">Actions</th>
+                                    <th style="width=25%">Actions</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -45,9 +45,51 @@
                                         <td>{{ $doctor->speciality }}</td>
                                         <td>{{ $doctor->room_num }}</td>
                                         <td>{{ $doctor->phone }}</td>
-                                        <td>{{ $doctor->gender }}</td>
-                                        <td>Active</td>                                        
-                                        
+                                        <td>{{ $doctor->gender }}</td>                                       
+                                        <td class="center">
+                                          @if($doctor->status==1)
+                                            <span class="label label-success">Active</span>
+                                          @else
+                                            <span class="label label-danger">Deactive</span>
+                                            @endif
+                                        </td>
+                                        <td class="center">
+                                            <div class="row">
+                                              <div class="span2">
+                                                <a href="{{url('/view-details'.$doctor->id)}}" class="btn btn-danger">
+                                                  <i class="mdi mdi-eye"></i>
+                                                </a>
+                                              </div>
+                                              <div class="span2">
+                                                  @if($doctor->status==1)
+                                                    <a href="{{url('/doctor-status'.$doctor->id)}}" class="btn btn-success">
+                                                      <i class="mdi mdi-thumb-down"></i>  
+                                                    </a>
+                              
+                                                  @else
+                                                    <a href="{{url('/doctor-status'.$doctor->id)}}" class="btn btn-danger" >
+                                                      <i class="mdi mdi-thumb-up"></i>  
+                                                    </a>
+                                                    @endif
+                                              </div>
+          
+                                              <div class="span2">
+                                                <a href="{{url('/doctors/'.$doctor->id.'/edit/')}}" class="btn btn-info" >
+                                                  <i class="mdi mdi-pencil"></i>  
+                                                </a>                  
+                                              </div>
+          
+                                              <div class="span2">
+                                                <form action="{{url('/doctors/'.$doctor->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                  <button type="submit" class="btn btn-danger">
+                                                    <i class="mdi mdi-delete"></i> 
+                                                  </button>
+                                                </form>	
+                                              </div>
+                                            </div>
+                                        </td>
                                       </tr>
                                     @endforeach
 

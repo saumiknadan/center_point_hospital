@@ -86,24 +86,52 @@ class DoctorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Doctor $doctor)
     {
-        //
+       
+        return view('admin.doctors.edit', compact('doctor'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Doctor $doctor)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'speciality' => 'required|string|max:255',
+            'gender' => 'required|in:Male,Female',
+            'room_num' => 'required|string|max:50',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust allowed file types and size as needed
+        ]);
+
+        $doctor->name = $validatedData['name'];
+        $doctor->phone = $validatedData['phone'];
+        $doctor->speciality = $validatedData['speciality'];
+        $doctor->gender = $validatedData['gender'];
+        $doctor->room_num = $validatedData['room_num'];
+
+        if ($request->hasFile('image')) {
+            // Delete the old image before storing the new one
+            Storage::delete($doctor->image);
+
+            $doctor->image = $request->file('image')->store('doctor');
+        }
+
+        $doctor->save();
+        return redirect('/doctors')->with('message', 'Doctor updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Doctor $doctor)
     {
         //
+        $delete = $doctor->delete();
+
+        if($delete)
+            return redirect()->back()->with('message','Doctor deleted successfully');
     }
 }

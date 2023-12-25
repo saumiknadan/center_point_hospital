@@ -31,7 +31,7 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'doctor' => 'required|integer',
+           
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'speciality' => 'required|string|max:255',

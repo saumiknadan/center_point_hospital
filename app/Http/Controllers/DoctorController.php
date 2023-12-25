@@ -30,7 +30,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'doctor' => 'required|integer',
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
@@ -39,24 +39,26 @@ class DoctorController extends Controller
             'room_num' => 'required|string|max:50',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust allowed file types and size as needed
         ]);
-    
+        
+        
+        
         $doctor = new Doctor;
-        $doctor->id = $validatedData['doctor'];
-        $doctor->name = $validatedData['name'];
-        $doctor->phone = $validatedData['phone'];
-        $doctor->speciality = $validatedData['speciality'];
-        $doctor->gender = $validatedData['gender'];
-        $doctor->room_num = $validatedData['room_num'];
-    
+        $doctor->id = $request->doctor;
+        $doctor->name = $request->name;
+        $doctor->phone = $request->phone;
+        $doctor->speciality = $request->speciality;
+        $doctor->gender = $request->gender;
+        $doctor->room_num = $request->room_num;
+        
         if ($request->hasFile('image')) {
             $doctor->image = $request->file('image')->store('doctor');
         } else {
             return redirect()->back()->with('error', 'Please upload an image')->withInput();
         }
-    
+
         $doctor->save();
-        
         return redirect('/doctors')->with('message', 'Doctor added successfully');
+
     }
     
 
@@ -78,9 +80,10 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $doctor=Doctor::find($id);
+        return view('admin.doctors.show', compact('doctor'));
     }
 
     /**
@@ -97,7 +100,7 @@ class DoctorController extends Controller
      */
     public function update(Request $request, Doctor $doctor)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'speciality' => 'required|string|max:255',
@@ -106,16 +109,14 @@ class DoctorController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust allowed file types and size as needed
         ]);
 
-        $doctor->name = $validatedData['name'];
-        $doctor->phone = $validatedData['phone'];
-        $doctor->speciality = $validatedData['speciality'];
-        $doctor->gender = $validatedData['gender'];
-        $doctor->room_num = $validatedData['room_num'];
-
+        $doctor->name = $request->name;
+        $doctor->phone = $request->phone;
+        $doctor->speciality = $request->speciality;
+        $doctor->gender = $request->gender;
+        $doctor->room_num = $request->room_num;
+        
         if ($request->hasFile('image')) {
-            // Delete the old image before storing the new one
-            Storage::delete($doctor->image);
-
+            
             $doctor->image = $request->file('image')->store('doctor');
         }
 

@@ -56,7 +56,7 @@
                                         <td class="center">
                                             <div class="row">
                                               <div class="span2">
-                                                <a href="{{url('/view-details'.$doctor->id)}}" class="btn btn-danger">
+                                                <a href="{{url('/doctors/'.$doctor->id)}}" class="btn btn-danger">
                                                   <i class="mdi mdi-eye"></i>
                                                 </a>
                                               </div>

@@ -35,3 +35,7 @@ Route::middleware([
 Route::resource('doctors', DoctorController::class);
 Route::get('doctor-status{doctor}', [DoctorController::class, 'change_status']);
 
+//Appointment
+Route::post('/appointment',[HomeController::class,'appointment']);
+Route::get('/myappointment',[HomeController::class,'myappointment']);
+

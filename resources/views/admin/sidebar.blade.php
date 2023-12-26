@@ -58,12 +58,22 @@
       </li>
 
       <!--Sidebar ELement-->
+     
       <li class="nav-item menu-items">
         <a class="nav-link" href="{{ url('/doctors/') }}">
           <span class="menu-icon">
             <i class="mdi mdi-speedometer"></i>
           </span>
           <span class="menu-title">Doctors</span>
+        </a>
+      </li>
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="{{ url('/showappointment/') }}">
+          <span class="menu-icon">
+            <i class="mdi mdi-speedometer"></i>
+          </span>
+          <span class="menu-title">Appointment</span>
         </a>
       </li>
 

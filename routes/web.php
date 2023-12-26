@@ -40,3 +40,7 @@ Route::post('/appointment',[HomeController::class,'appointment']);
 Route::get('/myappointment',[HomeController::class,'myappointment']);
 Route::get('/cancel_appoint/{id}',[HomeController::class,'cancel_appoint']);
 
+// Show Appointment
+Route::get('/showappointment',[DoctorController::class,'showappointment']);
+Route::get('/approve/{id}',[DoctorController::class,'approved']);
+Route::get('/decline/{id}',[DoctorController::class,'declined']);

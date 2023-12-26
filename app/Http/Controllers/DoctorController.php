@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Doctor;
+use App\Models\Appointment;
 
 class DoctorController extends Controller
 {
@@ -135,4 +136,41 @@ class DoctorController extends Controller
         if($delete)
             return redirect()->back()->with('message','Doctor deleted successfully');
     }
+
+    public function showappointment(){
+        $appointments=Appointment::all();
+        return view('admin.appointment.index', compact('appointments'));
+    }
+
+    public function decline($id)
+    {
+        $data = Appointment::find($id);
+        $data->delete();
+
+        if($data)
+        return redirect()->back()->with('message','Doctor deleted successfully');
+  
+    }
+
+    public function approved($id)
+    {
+        $data = Appointment::find($id);
+        $data->status='approved';
+
+        $data->save();
+        return redirect()->back()->with('message','Patient approved successfully');
+  
+    }
+
+    public function declined($id)
+    {
+        $data = Appointment::find($id);
+        $data->status='declined';
+
+        $data->save();
+        return redirect()->back()->with('message','Patient Declined successfully');
+  
+    }
+
+    
 }

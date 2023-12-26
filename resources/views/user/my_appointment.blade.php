@@ -20,9 +20,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Inverse table</h4>
-                    <p class="card-description"> Add class <code>.table-dark</code>
-                    </p>
+                    <h2 class="card-title">Appointment Info</h2>
                     <div class="table-responsive">
                       <table class="table table-dark">
                         <thead>
@@ -31,6 +29,7 @@
                             <th> Date </th>
                             <th> Message </th>
                             <th> Status </th>
+                            <th> Cancel </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -41,6 +40,10 @@
                             <td> {{ $appoint -> date }} </td>
                             <td> {{ $appoint -> status }} </td>
                             <td> {{ $appoint -> message }} </td>
+                            <td> <a href="{{url('/cancel_appoint/'.$appoint->id)}}" class="btn btn-info" >
+                              Cancel </a>
+                              
+                            </td>
                           </tr>
                         @endforeach
                           

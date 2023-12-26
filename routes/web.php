@@ -38,4 +38,5 @@ Route::get('doctor-status{doctor}', [DoctorController::class, 'change_status']);
 //Appointment
 Route::post('/appointment',[HomeController::class,'appointment']);
 Route::get('/myappointment',[HomeController::class,'myappointment']);
+Route::get('/cancel_appoint/{id}',[HomeController::class,'cancel_appoint']);
 

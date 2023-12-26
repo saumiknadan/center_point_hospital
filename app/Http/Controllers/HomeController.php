@@ -73,4 +73,15 @@ class HomeController extends Controller
         }
         
     }
+
+    public function cancel_appoint($id)
+    {
+        $data = Appointment::find($id);
+        $data->delete();
+
+        if($data)
+        return redirect()->back()->with('message','Doctor deleted successfully');
+  
+    }
+
 }

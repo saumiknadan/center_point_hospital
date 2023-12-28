@@ -19,34 +19,34 @@
                       <div class="col-12 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body">
-                            <h4 class="card-title">Add Doctors</h4>
-                            <p class="card-description"> Basic form elements </p>
-                            <form class="forms-sample"  action="{{url('/doctors/')}}" method="post" enctype="multipart/form-data">
+                            <h4 class="card-title">Send Email</h4>
+                            
+                            <form class="forms-sample"  action="{{url('/sendemail/'.$data->id)}}" method="post" >
                               @csrf
                               <fieldset>
                                 <div class="form-group">
-                                  <label for="exampleInputName1">Greeting</label>
-                                  <input type="text" class="form-control" id="exampleInputName1" name="greeting" required>
+                                  <label >Greeting</label>
+                                  <input type="text" class="form-control"  name="greeting" >
                                 </div>
   
                                 <div class="form-group">
-                                  <label for="exampleInputSpeciality">Body</label>
-                                  <input type="text" class="form-control" id="exampleInputSpeciality" name="body" placeholder="Speciality" required>
+                                  <label >Body</label>
+                                  <input type="text" class="form-control" name="body">
                                 </div>
   
                                 <div class="form-group">
-                                  <label for="room">Action Text</label>
-                                  <input type="number" class="form-control" id="room" name="actiontext" placeholder="room">
+                                  <label >Action Text</label>
+                                  <input type="text" class="form-control" name="actiontext" >
                                 </div>
   
                                 <div class="form-group">
-                                  <label for="mobile">Action URL</label>
-                                  <input type="number" class="form-control" id="mobile" name="actionurl" placeholder="mobile">
+                                  <label >Action URL</label>
+                                  <input type="text" class="form-control"  name="actionurl" >
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="mobile">End Part</label>
-                                    <input type="number" class="form-control" id="mobile" name="endpart" placeholder="mobile">
+                                    <label >End Part</label>
+                                    <input type="text" class="form-control"  name="endpart" >
                                   </div>
                                 
                                 

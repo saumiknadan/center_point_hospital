@@ -19,7 +19,11 @@ use App\Http\Controllers\DoctorController;
 Route::get('/',[HomeController::class,'index']);
 
 // Admin Page
-Route::get('/home',[HomeController::class,'redirect']);
+Route::get('/home',[HomeController::class,'redirect'])->
+    middleware('auth','verified');
+
+    // Email verification
+    // Route::get('/home',[HomeController::class,'redirect'])->middleware('auth','verified');
 
 Route::middleware([
     'auth:sanctum',
@@ -44,3 +48,5 @@ Route::get('/cancel_appoint/{id}',[HomeController::class,'cancel_appoint']);
 Route::get('/showappointment',[DoctorController::class,'showappointment']);
 Route::get('/approve/{id}',[DoctorController::class,'approved']);
 Route::get('/decline/{id}',[DoctorController::class,'declined']);
+
+require __DIR__.'/auth.php';

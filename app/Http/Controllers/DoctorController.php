@@ -172,5 +172,10 @@ class DoctorController extends Controller
   
     }
 
+    public function emailview($id)
+    {
+        return view('admin.email_view');
+    }
+
     
 }

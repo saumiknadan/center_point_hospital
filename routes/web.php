@@ -48,5 +48,6 @@ Route::get('/cancel_appoint/{id}',[HomeController::class,'cancel_appoint']);
 Route::get('/showappointment',[DoctorController::class,'showappointment']);
 Route::get('/approve/{id}',[DoctorController::class,'approved']);
 Route::get('/decline/{id}',[DoctorController::class,'declined']);
+Route::get('/emailview/{id}',[DoctorController::class,'emailview']);
 
 require __DIR__.'/auth.php';

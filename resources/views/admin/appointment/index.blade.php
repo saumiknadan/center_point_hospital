@@ -28,7 +28,7 @@
                                         <th> Date </th>
                                         <th> Message </th>
                                         <th> Status </th>
-                                        <th> Cancel </th>
+                                        <th> Action </th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -41,8 +41,11 @@
                                         <td> {{ $appointment -> message }} </td>
                                         <td> <a href="{{url('/approve/'.$appointment->id)}}" class="btn btn-info" >
                                             Approve </a>
-                                        <td> <a href="{{url('/decline/'.$appointment->id)}}" class="btn btn-info" >
+                                        <td> <a href="{{url('/decline/'.$appointment->id)}}" class="btn btn-danger" >
                                           Decline </a>
+
+                                        <td> <a href="{{url('/emailview/'.$appointment->id)}}" class="btn btn-primary" >
+                                            Email </a>
                                           
                                         </td>
                                       </tr>

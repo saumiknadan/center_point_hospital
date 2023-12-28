@@ -9,7 +9,7 @@
   <div class="back-to-top"></div>
 
   <header>
-     @include('user.topbar')<!-- .topbar -->
+    @include('user.topbar')<!-- .topbar -->
 
     @include('user.navbar') <!-- .navbar -->
   </header>
